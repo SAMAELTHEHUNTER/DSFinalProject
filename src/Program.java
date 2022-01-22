@@ -21,6 +21,21 @@ public class Program {
                 Rope print = ropes.get(0);
                 print.print(print.getRoot());
             }
+            else if (check.equalsIgnoreCase("concat")) {
+                int first = Integer.parseInt(st.nextToken());
+                int second = Integer.parseInt(st.nextToken());
+                Rope firstRope = ropes.get(first-1);
+                Rope secondRope = ropes.get(second-1);
+                String firstStr = firstRope.getString(firstRope.getRoot());
+                String secondStr = secondRope.getString(secondRope.getRoot());
+                firstStr = firstStr.substring(0, firstStr.length()-1);
+                secondStr = secondStr.substring(0, secondStr.length()-1);
+                String result = firstStr.concat(secondStr);
+                Rope resultRope = new Rope(result);
+                ropes.add(first-1, resultRope);
+                ropes.remove(firstRope);
+                ropes.remove(secondRope);
+            }
             else if (check.equalsIgnoreCase("exit")) {
                 break;
             }
