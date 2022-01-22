@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Program {
@@ -20,6 +21,12 @@ public class Program {
             else if (check.equalsIgnoreCase("print")) {
                 Rope print = ropes.get(0);
                 print.print(print.getRoot());
+            }
+            else if(check.equalsIgnoreCase("index")){
+                Rope newRope = new Rope("I_ am_ rope_ data_ structure");
+                Scanner scanner = new Scanner(System.in);
+                int ind = scanner.nextInt();
+                System.out.println(newRope.index( newRope ,ind ));
             }
             else if (check.equalsIgnoreCase("exit")) {
                 break;
