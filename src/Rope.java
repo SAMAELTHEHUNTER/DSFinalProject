@@ -7,17 +7,7 @@ public class Rope {
         newRope(input, root);
     }
 
-    void print(Node node) {
-        if (node == null)
-            return;
-        print(node.getLeft());
-        System.out.println(node.getN() + " " + node.getStr());
-        print(node.getRight());
-    }
-
     void newRope(String input, Node root) {
-        String m;
-        String n;
         StringTokenizer st = new StringTokenizer(input);
         if (st.countTokens() > 2) {
             Node right = new Node(null, 0);
@@ -57,6 +47,17 @@ public class Rope {
                 root.setRight(right);
             }
         }
+    }
+
+    void status (Node node) {
+        if (node == null) {
+            return;
+        }
+        status(node.getLeft());
+        if (node.getStr() != null) {
+            System.out.print(node.getStr() + " ");
+        }
+        status(node.getRight());
     }
 
     public Node getRoot() {
