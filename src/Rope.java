@@ -2,6 +2,7 @@ import java.util.StringTokenizer;
 
 public class Rope {
     private Node root;
+    private String out = "";
     Rope(String input) {
         root = new Node(null, 0);
         newRope(input, root);
@@ -37,7 +38,7 @@ public class Rope {
                 root.setN(rightStr.length());
                 root.setStr(rightStr);
             }
-            else {
+            else if (st.countTokens() == 2) {
                 String leftStr = st.nextToken();
                 root.setN(leftStr.length());
                 Node left = new Node(leftStr, leftStr.length());
@@ -62,5 +63,17 @@ public class Rope {
 
     public Node getRoot() {
         return root;
+    }
+
+    String getString(Node node) {
+        if (node == null) {
+            return "";
+        }
+        getString(node.getLeft());
+        if (node.getStr() != null) {
+            out = out.concat(node.getStr()+" ");
+        }
+        getString(node.getRight());
+        return out;
     }
 }
