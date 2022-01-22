@@ -17,6 +17,7 @@ public class Rope {
 
     void newRope(String input, Node root) {
         String m;
+        String n;
         StringTokenizer st = new StringTokenizer(input);
         if (st.countTokens() > 2) {
             Node right = new Node(null, 0);
