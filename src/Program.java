@@ -1,8 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Program {
     public static void main(String[] args) throws IOException {
@@ -43,6 +40,12 @@ public class Program {
             } else if (check.equalsIgnoreCase("exit")) {
                 System.exit(0);
             }
+
+            List <String > strings = List.of("dd", "da" , "catch" , "bag" , "cat");
+            Trie trie = new Trie(strings);
+            System.out.println(trie.suggest("ca"));
+         //   Trie t = new Trie();
+
         }
     }
 }
