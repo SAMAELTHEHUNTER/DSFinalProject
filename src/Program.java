@@ -15,8 +15,8 @@ public class Program {
                 ropes.add(newRope);
             } else if (check.equalsIgnoreCase("print")) {
                 int i = Integer.parseInt(st.nextToken());
-                Rope print = ropes.get(i-1);
-                print.print(print.getRoot());
+                Rope print = ropes.get(i - 1);
+                print.status(print.getRoot());
             } else if (check.equalsIgnoreCase("concat")) {
                 int first = Integer.parseInt(st.nextToken());
                 int second = Integer.parseInt(st.nextToken());
@@ -40,9 +40,50 @@ public class Program {
                 }
             } else if (check.equalsIgnoreCase("index")) {
                 int num = Integer.parseInt(st.nextToken());
-                Rope newRope = ropes.get(num);
+                Rope newRope = ropes.get(num - 1);
                 int i = Integer.parseInt(st.nextToken());
                 System.out.println(newRope.index(newRope, i));
+            } else if (check.equalsIgnoreCase("insert")) {
+                int firstI = Integer.parseInt(st.nextToken());
+                Rope first = ropes.get(firstI - 1);
+                int index = Integer.parseInt(st.nextToken());
+                int secondI = Integer.parseInt(st.nextToken());
+                Rope second = ropes.get(secondI - 1);
+                String firstStr = first.getString(first.getRoot());
+                String secondStr = second.getString(second.getRoot());
+                firstStr = firstStr.substring(0, firstStr.length() - 1);
+                secondStr = secondStr.substring(0, secondStr.length() - 1);
+                String firstStr1 = firstStr.substring(0, index + 1);
+                String firstStr2 = firstStr.substring(index + 1, firstStr.length());
+                String result = firstStr1 + secondStr + firstStr2;
+                Rope newRope = new Rope(result);
+                ropes.add(firstI - 1, newRope);
+                ropes.remove(first);
+                ropes.remove(second);
+            } else if (check.equalsIgnoreCase("split")) {
+                int i = Integer.parseInt(st.nextToken());
+                Rope target = ropes.get(i - 1);
+                String targetStr = target.getString(target.getRoot());
+                int index = Integer.parseInt(st.nextToken());
+                String targetStr1 = targetStr.substring(0, index + 1);
+                String targetStr2 = targetStr.substring(index + 1, targetStr.length());
+                Rope result1 = new Rope(targetStr1);
+                Rope result2 = new Rope(targetStr2);
+                ropes.add(i - 1, result1);
+                ropes.add(i, result2);
+                ropes.remove(target);
+            } else if (check.equalsIgnoreCase("delete")) {
+                int i = Integer.parseInt(st.nextToken());
+                Rope target = ropes.get(i-1);
+                String targetStr = target.getString(target.getRoot());
+                int index1 = Integer.parseInt(st.nextToken());
+                int index2 = Integer.parseInt(st.nextToken());
+                String targetStr1 = targetStr.substring(0, index1);
+                String targetStr2 = targetStr.substring(index2 + 1, targetStr.length());
+                String result = targetStr1.concat(targetStr2);
+                Rope resultRope = new Rope(result);
+                ropes.add(i-1, resultRope);
+                ropes.remove(target);
             } else if (check.equalsIgnoreCase("exit")) {
                 System.exit(0);
             }
@@ -50,7 +91,7 @@ public class Program {
 //            List <String > strings = List.of("dd", "da" , "catch" , "bag" , "cat");
 //            Trie trie = new Trie(strings);
 //            System.out.println(trie.suggest("ca"));
-         //   Trie t = new Trie();
+            //   Trie t = new Trie();
 
         }
     }
