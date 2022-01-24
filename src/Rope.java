@@ -18,8 +18,6 @@ public class Rope {
     }
 
     void newRope(String input, Node root) {
-        String m;
-        String n;
         StringTokenizer st = new StringTokenizer(input);
         if (st.countTokens() > 2) {
             Node right = new Node(null, 0);
@@ -119,5 +117,16 @@ public class Rope {
         }
         getString(node.getRight());
         return out;
+    }
+
+    void status (Node node) {
+        if (node == null) {
+            return;
+        }
+        status(node.getLeft());
+        if (node.getStr() != null) {
+            System.out.print(node.getStr() + " ");
+        }
+        status(node.getRight());
     }
 }

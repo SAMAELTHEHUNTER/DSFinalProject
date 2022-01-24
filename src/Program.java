@@ -4,18 +4,18 @@ import java.util.*;
 public class Program {
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        ArrayList<Rope> ropes = new ArrayList<>();
         while (true) {
-            ArrayList<Rope> ropes = new ArrayList<>();
             String input = in.readLine();
             StringTokenizer st = new StringTokenizer(input);
             String check = st.nextToken();
             if (check.equalsIgnoreCase("new")) {
                 String pass = input.substring(5, input.length() - 1);
                 Rope newRope = new Rope(pass);
-                newRope.print(newRope.getRoot());
                 ropes.add(newRope);
             } else if (check.equalsIgnoreCase("print")) {
-                Rope print = ropes.get(0);
+                int i = Integer.parseInt(st.nextToken());
+                Rope print = ropes.get(i-1);
                 print.print(print.getRoot());
             } else if (check.equalsIgnoreCase("concat")) {
                 int first = Integer.parseInt(st.nextToken());
@@ -31,19 +31,25 @@ public class Program {
                 ropes.add(first - 1, resultRope);
                 ropes.remove(firstRope);
                 ropes.remove(secondRope);
+            } else if (check.equalsIgnoreCase("status")) {
+                for (int i = 0; i < ropes.size(); i++) {
+                    Rope temp = ropes.get(i);
+                    System.out.print((i + 1) + ". ");
+                    temp.status(temp.getRoot());
+                    System.out.println();
+                }
             } else if (check.equalsIgnoreCase("index")) {
-                Rope newRope = new Rope("I_ am_ rope_ data_ structure");
-                Scanner scanner = new Scanner(System.in);
-//                int num = Integer.parseInt(st.nextToken());
-                int ind = scanner.nextInt();
-                System.out.println(newRope.index(newRope, ind));
+                int num = Integer.parseInt(st.nextToken());
+                Rope newRope = ropes.get(num);
+                int i = Integer.parseInt(st.nextToken());
+                System.out.println(newRope.index(newRope, i));
             } else if (check.equalsIgnoreCase("exit")) {
                 System.exit(0);
             }
 
-            List <String > strings = List.of("dd", "da" , "catch" , "bag" , "cat");
-            Trie trie = new Trie(strings);
-            System.out.println(trie.suggest("ca"));
+//            List <String > strings = List.of("dd", "da" , "catch" , "bag" , "cat");
+//            Trie trie = new Trie(strings);
+//            System.out.println(trie.suggest("ca"));
          //   Trie t = new Trie();
 
         }
