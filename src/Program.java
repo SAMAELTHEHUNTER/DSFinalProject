@@ -74,7 +74,7 @@ public class Program {
                 ropes.remove(target);
             } else if (check.equalsIgnoreCase("delete")) {
                 int i = Integer.parseInt(st.nextToken());
-                Rope target = ropes.get(i-1);
+                Rope target = ropes.get(i - 1);
                 String targetStr = target.getString(target.getRoot());
                 int index1 = Integer.parseInt(st.nextToken());
                 int index2 = Integer.parseInt(st.nextToken());
@@ -82,12 +82,71 @@ public class Program {
                 String targetStr2 = targetStr.substring(index2 + 1, targetStr.length());
                 String result = targetStr1.concat(targetStr2);
                 Rope resultRope = new Rope(result);
-                ropes.add(i-1, resultRope);
+                ropes.add(i - 1, resultRope);
                 ropes.remove(target);
             } else if (check.equalsIgnoreCase("exit")) {
                 System.exit(0);
-            }
 
+            } else if (check.equalsIgnoreCase("autocomplete")) {
+                BufferedReader reader;
+                List<String> list = new ArrayList<>();
+                List<String> newList = new ArrayList<>();
+                try {
+                    reader = new BufferedReader(new FileReader("src/input.txt"));
+                    String line = reader.readLine();
+                    while (line != null) {
+                        list.add(line);
+                        line = reader.readLine();
+                    }
+                } catch (IOException e) {
+                    System.err.println(e.getMessage());
+                }
+
+                Trie trie = new Trie(list);
+                String prefix = st.nextToken();
+                newList = trie.suggest(prefix);
+                if (newList.size() >= 3) {
+                    System.out.println("1." + newList.get(0));
+                    System.out.println("2." + newList.get(1));
+                    System.out.println("3." + newList.get(2));
+                }
+                else if (newList.size() == 2){
+                    System.out.println("1." + newList.get(0));
+                    System.out.println("2." + newList.get(1));
+                }
+                else if (newList.size() == 1){
+                    System.out.println("1." + newList.get(0));
+                }
+                else {
+                    System.err.println("Nothing found !");
+                }
+
+                int num = Integer.parseInt(st.nextToken());
+
+                switch (num) {
+                    case 1:
+                        Rope newRope = new Rope(newList.get(0));
+                        ropes.add(newRope);
+                        System.out.println("Successful !");
+                        break;
+
+                    case 2:
+                        Rope newRope1 = new Rope(newList.get(1));
+                        ropes.add(newRope1);
+                        System.out.println("Successful !");
+                        break;
+
+                    case 3:
+                        Rope newRope2 = new Rope(newList.get(2));
+                        ropes.add(newRope2);
+                        System.out.println("Successful !");
+                        break;
+
+                    default:
+                        System.err.println("Error !!!");
+                }
+
+            }
 //            List <String > strings = List.of("dd", "da" , "catch" , "bag" , "cat");
 //            Trie trie = new Trie(strings);
 //            System.out.println(trie.suggest("ca"));
