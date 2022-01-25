@@ -90,7 +90,7 @@ public class Program {
             } else if (check.equalsIgnoreCase("autocomplete")) {
                 BufferedReader reader;
                 List<String> list = new ArrayList<>();
-                List<String> newList = new ArrayList<>();
+                List<String> newList;
                 try {
                     reader = new BufferedReader(new FileReader("src/input.txt"));
                     String line = reader.readLine();
