@@ -121,7 +121,7 @@ public class Program {
                     System.err.println("Nothing found !");
                 }
 
-                int num = Integer.parseInt(st.nextToken());
+                int num = Integer.parseInt(in.readLine());
 
                 switch (num) {
                     case 1:
