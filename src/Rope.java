@@ -44,13 +44,16 @@ public class Rope {
             if (st.countTokens() == 1) {
                 String rightStr = st.nextToken();
                 root.setN(rightStr.length());
+                rightStr = rightStr.concat(" ");
                 root.setStr(rightStr);
             } else if (st.countTokens() == 2) {
                 String leftStr = st.nextToken();
+                leftStr = leftStr.concat(" ");
                 root.setN(leftStr.length());
                 Node left = new Node(leftStr, leftStr.length());
                 root.setLeft(left);
                 String rightStr = st.nextToken();
+                rightStr = rightStr.concat(" ");
                 Node right = new Node(rightStr, rightStr.length());
                 root.setRight(right);
             }
@@ -113,7 +116,7 @@ public class Rope {
         }
         getString(node.getLeft());
         if (node.getStr() != null) {
-            out = out.concat(node.getStr() + " ");
+            out = out.concat(node.getStr());
         }
         getString(node.getRight());
         return out;
@@ -125,7 +128,7 @@ public class Rope {
         }
         status(node.getLeft());
         if (node.getStr() != null) {
-            System.out.print(node.getStr() + " ");
+            System.out.print(node.getStr());
         }
         status(node.getRight());
     }
