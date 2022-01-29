@@ -82,7 +82,7 @@ public class Rope {
 
         } else {
 
-            while (tmp.getStr() == null && i >= tmp.getN()) {
+            while (tmp.getStr() == null && i > tmp.getN()) {
                 i -= tmp.getN();
                 tmp = tmp.getRight();
             }
