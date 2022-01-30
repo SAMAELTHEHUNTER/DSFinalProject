@@ -79,7 +79,7 @@ public class Program {
                 int index1 = Integer.parseInt(st.nextToken());
                 int index2 = Integer.parseInt(st.nextToken());
                 String targetStr1 = targetStr.substring(0, index1);
-                String targetStr2 = targetStr.substring(index2 + 1, targetStr.length());
+                String targetStr2 = targetStr.substring(index2, targetStr.length());
                 String result = targetStr1.concat(targetStr2);
                 Rope resultRope = new Rope(result);
                 ropes.add(i - 1, resultRope);
@@ -109,15 +109,12 @@ public class Program {
                     System.out.println("1." + newList.get(0));
                     System.out.println("2." + newList.get(1));
                     System.out.println("3." + newList.get(2));
-                }
-                else if (newList.size() == 2){
+                } else if (newList.size() == 2) {
                     System.out.println("1." + newList.get(0));
                     System.out.println("2." + newList.get(1));
-                }
-                else if (newList.size() == 1){
+                } else if (newList.size() == 1) {
                     System.out.println("1." + newList.get(0));
-                }
-                else {
+                } else {
                     System.err.println("Nothing found !");
                 }
 
@@ -147,11 +144,6 @@ public class Program {
                 }
 
             }
-//            List <String > strings = List.of("dd", "da" , "catch" , "bag" , "cat");
-//            Trie trie = new Trie(strings);
-//            System.out.println(trie.suggest("ca"));
-            //   Trie t = new Trie();
-
         }
     }
 }

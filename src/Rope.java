@@ -28,9 +28,11 @@ public class Rope {
             int rightChild = st.countTokens() - leftChild;
             String pass = st.nextToken();
             int length = pass.length();
+            length++;
             for (int i = 1; i < leftChild; i++) {
                 String temp = st.nextToken();
                 length += temp.length();
+                length++;
                 pass = pass.concat(" " + temp);
             }
             newRope(pass, root.getLeft());
@@ -43,8 +45,8 @@ public class Rope {
         } else {
             if (st.countTokens() == 1) {
                 String rightStr = st.nextToken();
-                root.setN(rightStr.length());
                 rightStr = rightStr.concat(" ");
+                root.setN(rightStr.length());
                 root.setStr(rightStr);
             } else if (st.countTokens() == 2) {
                 String leftStr = st.nextToken();
