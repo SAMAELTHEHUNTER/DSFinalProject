@@ -40,20 +40,19 @@ public class Trie {
         root = new Trie();
         for (String word : words)
             root.insert(word);
-
     }
 
-    public void suggestHelper(Trie root, List<String> list, StringBuffer curr) {
+    public void suggestHelper(Trie root, List<String> list, StringBuffer current) {
         if (root.isWord) {
-            list.add(curr.toString());
+            list.add(current.toString());
         }
 
         if (root.childs == null || root.childs.isEmpty())
             return;
 
         for (Trie child : root.childs.values()) {
-            suggestHelper(child, list, curr.append(child.ch));
-            curr.setLength(curr.length() - 1);
+            suggestHelper(child, list, current.append(child.ch));
+            current.setLength(current.length() - 1);
         }
     }
 
