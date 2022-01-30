@@ -12,9 +12,15 @@ public class Trie {
         childs = new HashMap<>();
     }
 
-    public Trie(char c) {
-        this.ch = c;
+    public Trie(char ch) {
+        this.ch = ch;
         childs = new HashMap<>();
+    }
+
+    public Trie(List<String> words) {
+        root = new Trie();
+        for (String word : words)
+            root.insert(word);
     }
 
     public void insert(String word) {
@@ -33,13 +39,20 @@ public class Trie {
             child.isWord = true;
     }
 
-
     Trie root;
 
-    public Trie(List<String> words) {
-        root = new Trie();
-        for (String word : words)
-            root.insert(word);
+    public List<String> suggest(String prefix) {
+        List<String> list = new ArrayList<>();
+        Trie node = root;
+        StringBuffer curr = new StringBuffer();
+        for (char ch : prefix.toCharArray()) {
+            node = node.childs.get(ch);
+            if (node == null)
+                return list;
+            curr.append(ch);
+        }
+        suggestHelper(node, list, curr);
+        return list;
     }
 
     public void suggestHelper(Trie root, List<String> list, StringBuffer current) {
@@ -56,19 +69,6 @@ public class Trie {
         }
     }
 
-    public List<String> suggest(String prefix) {
-        List<String> list = new ArrayList<>();
-        Trie node = root;
-        StringBuffer curr = new StringBuffer();
-        for (char ch : prefix.toCharArray()) {
-            node = node.childs.get(ch);
-            if (node == null)
-                return list;
-            curr.append(ch);
-        }
-        suggestHelper(node, list, curr);
-        return list;
-    }
 }
 
 
